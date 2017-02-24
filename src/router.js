@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 
 import Wrapper from './components/Wrapper';
 import Home from './containers/Home';
@@ -10,9 +10,23 @@ const componentRoutes = {
   indexRoute: { component: Home },
   childRoutes: [
     {
+      path: 'tweets',
+      getComponent(location, cb) {
+        System.import(Home)
+          .then(module => cb(null, module.default));
+      }
+    },
+    {
+      path: 'tweets/create',
+      getComponent(location, cb) {
+        System.import('./containers/ComposeTweet')
+          .then(module => cb(null, module.default));
+      }
+    },
+    {
       path: '*',
       getComponent(location, cb) {
-        System.import('./containers/Home')
+        System.import('./containers/ComposeTweet')
           .then(module => cb(null, module.default));
       }
     }

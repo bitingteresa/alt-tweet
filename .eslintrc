@@ -4,6 +4,9 @@ extends: airbnb
 parserOptions:
   sourceType: module
 
+parser:
+  babel-eslint
+
 env:
   es6: true
   browser: true
@@ -37,8 +40,8 @@ rules:
   react/prop-types: 0
   react/prefer-stateless-function: 0
   react/self-closing-comp: 1
-  react/require-default-props: 1
   react/forbid-prop-types: 0
+  react/require-default-props: 0
 
   import/newline-after-import: 0
   import/imports-first: 0

@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
+import './Wrapper.scss';
 
 const Wrapper = ({ children }) => {
   return (
     <div className='container'>
-      {children}
+      <div className='content'>
+        {children}
+      </div>
     </div>
   );
 };

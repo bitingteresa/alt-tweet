@@ -1,0 +1,15 @@
+@import '../../styles/index';
+
+.container {
+  background: $algae;
+  background: -webkit-radial-gradient(circle, $lemon, $algae);
+  background: -o-radial-gradient(circle, $lemon, $algae);
+  background: -moz-radial-gradient(circle, $lemon, $algae);
+  background: radial-gradient(circle, $lemon, $algae);
+  height: 100vh;
+  width: 100%;
+}
+
+.content {
+  margin: 5rem 5rem 0;
+}

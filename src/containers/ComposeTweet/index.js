@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import classNames from 'classnames';
+import TypeAhead from '../../components/Typeahead';
 
-class Home extends Component {
+class ComposeTweet extends Component {
 
   render () {
     return (
       <div>
-        HEYEYEYEY!
+        <TypeAhead />
       </div>
     );
   }
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(ComposeTweet);
