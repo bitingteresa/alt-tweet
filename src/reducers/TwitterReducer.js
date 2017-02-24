@@ -2,14 +2,7 @@ import * as C from '../constants';
 
 const initialState = {
   isFetching: false,
-  possibleUsers: [
-    {
-      id: 12323,
-      name: 'BEST',
-      screen_name: 'happylady',
-      profile_image_url: 'http://pbs.twimg.com/profile_images/188859546/usethis_normal.bmp'
-    }
-  ]
+  possibleUsers: []
 };
 
 export default (state = initialState, action) => {

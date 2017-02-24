@@ -54,21 +54,18 @@ export default class TypeAhead extends Component {
 
   renderList (list) {
     const { show } = this.state;
+    const items = list.map((item, idx) => {
+      return (
+        <TypeaheadItem
+          key={idx}
+          model={item}
+          onClick={::this.onSelect}
+          component={this.props.component}
+        />
+      );
+    });
 
-    if (list.length && show) {
-      const items = list.map((item, idx) => {
-        return (
-          <TypeaheadItem
-            key={idx}
-            model={item}
-            onClick={::this.onSelect}
-            component={this.props.component}
-          />
-        );
-      });
-
-      return (<div>{items}</div>);
-    }
+    return (<div>{items}</div>);
   }
 
   renderInput () {

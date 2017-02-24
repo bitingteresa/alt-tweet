@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TypeAhead from '../../components/Typeahead';
+import * as TwitterServices from '../../services/twitter';
 
 class ComposeTweet extends Component {
   state = {
@@ -30,13 +31,12 @@ class ComposeTweet extends Component {
   }
 
   checkTweet (tweet) {
+    const { fetchPossibleUsers } = this.props.actions;
     const regex = /\B@\w{2,}/gi;
     const users = tweet.match(regex);
 
     if (users) {
-      // figure out how to do the call!
-      // debounce it if possible
-      console.log('valid and call service', users, this.state);
+      fetchPossibleUsers(users[0]);
     }
   }
 
@@ -55,6 +55,7 @@ class ComposeTweet extends Component {
     const { possibleUsers } = this.props;
     const { userSelected, tweet } = this.state;
 
+    console.log('looking at', possibleUsers);
     return (
       <div>
         <TypeAhead
@@ -78,9 +79,11 @@ const mapStateToProps = (state, ownProps) => {
   return newState;
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: {
-    ...bindActionCreators({}, dispatch)
+    ...bindActionCreators({
+      fetchPossibleUsers: TwitterServices.fetchPossibleUsers
+    }, dispatch)
   }
 });
 
