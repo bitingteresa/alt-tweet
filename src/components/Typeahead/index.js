@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import TypeaheadItem from './TypeaheadItem';
 
 export default class TypeAhead extends Component {
   static propTypes = {
@@ -6,8 +7,8 @@ export default class TypeAhead extends Component {
     onChange: PropTypes.func,
     value: PropTypes.any,
     list: PropTypes.array,
-    onSelect: PropTypes.func
-    // component: PropTypes.func
+    onSelect: PropTypes.func,
+    component: PropTypes.func
   };
 
   state = {
@@ -29,6 +30,7 @@ export default class TypeAhead extends Component {
     const { number } = this.state;
     const { list } = this.props;
 
+    // need to check list.length for these
     if (e.keyCode === 40 && number < list.length - 1) {
       this.setState({
         number: number + 1
@@ -50,30 +52,30 @@ export default class TypeAhead extends Component {
     this.setState({ show: false });
   }
 
-  // renderList (list) {
-  //   const { show } = this.state;
-  //
-  //   if (list.length && show) {
-  //     const items = list.map((item, idx) => {
-  //       return (
-  //         <TypeAheadItem
-  //           key={idx}
-  //           model={item}
-  //           onClick={::this.onSelect}
-  //           component={this.props.component}
-  //         />
-  //       );
-  //     });
-  //
-  //     return (<div>{items}</div>);
-  //   }
-  // }
+  renderList (list) {
+    const { show } = this.state;
+
+    if (list.length && show) {
+      const items = list.map((item, idx) => {
+        return (
+          <TypeaheadItem
+            key={idx}
+            model={item}
+            onClick={::this.onSelect}
+            component={this.props.component}
+          />
+        );
+      });
+
+      return (<div>{items}</div>);
+    }
+  }
 
   renderInput () {
     const { value } = this.props;
 
     return (
-      <input
+      <textarea
         className='form-control'
         onChange={::this.onChange}
         value={value}
@@ -90,7 +92,7 @@ export default class TypeAhead extends Component {
       <div>
         {label}
         {this.renderInput()}
-        {/* {show && list.length ? this.renderList(list) : ''} */}
+        {show && list.length ? this.renderList(list) : ''}
       </div>
     );
   }

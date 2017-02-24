@@ -16,3 +16,10 @@ body {
   font-family: 'Josefin Sans', Helvetica, sans-serif;
   color: white;
 }
+
+.form-control {
+  font-size: 24px;
+  border-radius: 0;
+  box-shadow: none;
+  border: 3px solid $algae;
+}

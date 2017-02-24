@@ -4,11 +4,26 @@ import { bindActionCreators } from 'redux';
 import TypeAhead from '../../components/Typeahead';
 
 class ComposeTweet extends Component {
+  state = {
+    maxChar: 140
+  };
+
+  renderTweetFooter () {
+    const { maxChar } = this.state;
+
+    return (
+      <div>
+        <p>{maxChar}</p>
+        <button className='btn btn-primary'>Tweet</button>
+      </div>
+    );
+  }
 
   render () {
     return (
       <div>
         <TypeAhead />
+        {this.renderTweetFooter()}
       </div>
     );
   }

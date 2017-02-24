@@ -1,11 +1,11 @@
 @import '../../styles/index';
 
 .container {
-  background: $algae;
-  background: -webkit-radial-gradient(circle, $lemon, $algae);
-  background: -o-radial-gradient(circle, $lemon, $algae);
-  background: -moz-radial-gradient(circle, $lemon, $algae);
-  background: radial-gradient(circle, $lemon, $algae);
+  background: $sky;
+  background: -webkit-radial-gradient(circle, $lemon, $sky);
+  background: -o-radial-gradient(circle, $lemon, $sky);
+  background: -moz-radial-gradient(circle, $lemon, $sky);
+  background: radial-gradient(circle, $lemon, $sky);
   height: 100vh;
   width: 100%;
 }
