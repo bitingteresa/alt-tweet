@@ -52,13 +52,14 @@ class ComposeTweet extends Component {
   }
 
   render () {
+    const { possibleUsers } = this.props;
     const { userSelected, tweet } = this.state;
 
     return (
       <div>
         <TypeAhead
           onChange={::this.onChangeTweet}
-          list={[]}
+          list={possibleUsers}
           value={tweet}
           model={userSelected}
           onSelect={::this.onSelectUser}

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 
 export default class TypeaheadItem extends Component {
   static propTypes = {
-    key: PropTypes.any,
     model: PropTypes.any,
     onClick: PropTypes.func,
     component: PropTypes.func
@@ -36,7 +35,6 @@ export default class TypeaheadItem extends Component {
   render () {
     return (
       <div
-        key={this.props.key}
         onClick={::this.onClick}
       >
         {this.renderItem()}
