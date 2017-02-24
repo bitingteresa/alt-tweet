@@ -14,7 +14,7 @@ export default class TypeaheadItem extends Component {
   renderItem () {
     const { model, component } = this.props;
     let renderItem;
-
+    console.log('renderItem')
     //  If a component was passed
     if (component) {
       renderItem = React.createElement(this.props.component, {

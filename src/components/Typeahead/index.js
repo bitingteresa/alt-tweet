@@ -22,29 +22,36 @@ export default class TypeAhead extends Component {
   }
 
   onSelect (item) {
-    this.props.onSelect(item);
     this.hideList();
+    this.props.onSelect(item);
   }
 
   onKeyDown (e) {
-    const { number } = this.state;
+    const { number, show } = this.state;
     const { list } = this.props;
+    const showingList = list.length && show;
+    const downArrow = e.keyCode === 40 && number < list.length - 1;
+    const upArrow = e.keyCode === 38 && number > -1;
+    const enter = e.keyCode === 13;
 
-    // need to check list.length for these
-    if (e.keyCode === 40 && number < list.length - 1) {
+    if (showingList && downArrow) {
+      console.log('down');
       this.setState({
         number: number + 1
       });
     }
 
-    if (e.keyCode === 38 && number > -1) {
+    if (showingList && upArrow) {
+      console.log('up');
       this.setState({
         number: number - 1
       });
     }
 
-    if (e.keyCode === 13) {
-      this.onSelect(list[number]);
+
+    if (showingList && enter) {
+      console.log('presee')
+      this.hideList()
     }
   }
 
@@ -72,7 +79,7 @@ export default class TypeAhead extends Component {
     const { value } = this.props;
 
     return (
-      <textarea
+      <input
         className='form-control'
         onChange={::this.onChange}
         value={value}

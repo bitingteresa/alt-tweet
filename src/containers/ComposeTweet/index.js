@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TypeAhead from '../../components/Typeahead';
+import UserSelection from './UserSelection';
 import * as TwitterServices from '../../services/twitter';
 
 class ComposeTweet extends Component {
   state = {
     charCount: 140,
     tweet: '',
+    regExMatches: [],
     usersSelected: {}
   };
 
   onChangeTweet (e) {
-    const { tweet } = this.state;
     const { value } = e.target;
     const newCount = 140 - value.length;
 
@@ -24,10 +25,16 @@ class ComposeTweet extends Component {
   }
 
   onSelectUser (user) {
-    const { usersSelected } = this.state;
+    const { clearPossibleUsers } = this.props.actions;
+    const { usersSelected, tweet, regExMatches } = this.state;
     const newUsersSelected = { ...usersSelected };
+    const newTweet = tweet.replace(regExMatches[0], `@${user.screen_name}`);
 
-    this.setState({ usersSelected: newUsersSelected });
+    this.setState({
+      usersSelected: newUsersSelected,
+      tweet: newTweet
+    });
+    clearPossibleUsers();
   }
 
   checkTweet (tweet) {
@@ -36,6 +43,7 @@ class ComposeTweet extends Component {
     const users = tweet.match(regex);
 
     if (users) {
+      this.setState({ regExMatches: users });
       fetchPossibleUsers(users[0]);
     }
   }
@@ -55,7 +63,6 @@ class ComposeTweet extends Component {
     const { possibleUsers } = this.props;
     const { userSelected, tweet } = this.state;
 
-    console.log('looking at', possibleUsers);
     return (
       <div>
         <TypeAhead
@@ -64,6 +71,7 @@ class ComposeTweet extends Component {
           value={tweet}
           model={userSelected}
           onSelect={::this.onSelectUser}
+          component={UserSelection}
         />
         {this.renderTweetFooter()}
       </div>
@@ -82,7 +90,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   actions: {
     ...bindActionCreators({
-      fetchPossibleUsers: TwitterServices.fetchPossibleUsers
+      fetchPossibleUsers: TwitterServices.fetchPossibleUsers,
+      clearPossibleUsers: TwitterServices.clearPossibleUsers
     }, dispatch)
   }
 });
