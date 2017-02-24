@@ -9,7 +9,7 @@ const Wrapper = ({ children }) => {
 };
 
 Wrapper.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any.isRequired
 };
 
 export default Wrapper;
