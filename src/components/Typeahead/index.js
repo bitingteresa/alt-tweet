@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import TypeaheadItem from './TypeaheadItem';
 import './Typeahead.scss';
 
@@ -69,6 +70,7 @@ export default class TypeAhead extends Component {
           model={item}
           onClick={::this.onSelect}
           component={this.props.component}
+          className={classNames({ 'keySelect': idx === this.state.number })}
         />
       );
     });

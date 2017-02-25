@@ -4,7 +4,8 @@ export default class TypeaheadItem extends Component {
   static propTypes = {
     model: PropTypes.any,
     onClick: PropTypes.func,
-    component: PropTypes.func
+    component: PropTypes.func,
+    className: PropTypes.string
   }
 
   onClick () {
@@ -36,6 +37,7 @@ export default class TypeaheadItem extends Component {
     return (
       <div
         onClick={::this.onClick}
+        className={this.props.className}
       >
         {this.renderItem()}
       </div>
