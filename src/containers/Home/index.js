@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { hashHistory } from 'react-router';
+import Tweets from '../../components/Tweets';
 import Pigeon from '../../assets/Pigeon.png';
+import Logo from '../../assets/alt-tweet-logo.png';
 import './Home.scss';
 
 class Home extends Component {
@@ -12,8 +14,12 @@ class Home extends Component {
 
   renderHeader () {
     return (
-      <div className='row'>
-        LOGO
+      <div className='row header'>
+        <img
+          src={Logo}
+          alt='alt-tweet'
+        />
+        <h3>alt-tweet</h3>
         <button
           className='btn btn-default pull-right'
           onClick={::this.onTweet}
@@ -29,6 +35,12 @@ class Home extends Component {
       <div className='pigeon'>
         <img src={Pigeon} alt='pigeon' />
       </div>
+    );
+  }
+
+  renderTweets () {
+    return (
+      <Tweets tweets={[]} />
     );
   }
 
@@ -53,7 +65,10 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const newState = {};
+  const newState = {
+    tweets: state.twitter.tweets
+  };
+  
   return newState;
 };
 
