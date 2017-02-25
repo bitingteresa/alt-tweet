@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Avatar from '../../assets/avatar.png';
 import './Tweets.scss';
 
 class Tweets extends Component {
@@ -8,9 +9,15 @@ class Tweets extends Component {
 
   renderTweet (tweet) {
     return (
-      <p>
-        {tweet.text}
-      </p>
+      <div key={tweet.date} className='tweet'>
+        <img src={Avatar} alt='avatar' />
+        <p>
+          <strong>Tiny Hands Across America</strong>
+          <span>@tinyhands</span>
+          <br />
+          {tweet.text}
+        </p>
+      </div>
     );
   }
 
@@ -20,7 +27,7 @@ class Tweets extends Component {
     return (
       <div>
         <h2>Past Tweets</h2>
-        <div>
+        <div className='tweetsList'>
           {tweets.map(tweet => this.renderTweet(tweet))}
         </div>
       </div>
