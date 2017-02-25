@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { hashHistory } from 'react-router';
+import Pigeon from '../../assets/Pigeon.png';
 import './Home.scss';
 
 class Home extends Component {
+  onTweet () {
+    hashHistory.push('/tweet');
+  }
 
   renderHeader () {
     return (
       <div className='row'>
         LOGO
-        <button className='btn btn-default pull-right'>tweet</button>
+        <button
+          className='btn btn-default pull-right'
+          onClick={::this.onTweet}
+        >
+          tweet
+        </button>
+      </div>
+    );
+  }
+
+  renderPigeon () {
+    return (
+      <div className='pigeon'>
+        <img src={Pigeon} alt='pigeon' />
       </div>
     );
   }
@@ -21,7 +39,11 @@ class Home extends Component {
           {this.renderHeader()}
           <div className='row'>
             <div className='col-xs-8 col-xs-offset-2'>
-              <p>Display some fake tweets(separate comp)</p>
+              {this.renderPigeon()}
+              <h1>
+                Keeps tiny hands busy <br />
+                without any harm.
+              </h1>
             </div>
           </div>
         </div>
