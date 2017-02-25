@@ -1,7 +1,10 @@
 @import '../../styles/index';
 
-.container {
-  color: $navy;
+.composeTweetContent {
+  .container {
+    color: $navy;
+    padding: 1.5rem 0rem;
+  }
 }
 
 .closeIconWrapper {

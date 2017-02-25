@@ -94,19 +94,21 @@ class ComposeTweet extends Component {
     const { userSelected, tweet } = this.state;
 
     return (
-      <div className='content'>
-        {this.renderCloseIcon()}
-        <div className='row'>
-          <div className='col-xs-8 col-xs-offset-2'>
-            <TypeAhead
-              onChange={::this.onChangeTweet}
-              list={possibleUsers}
-              value={tweet}
-              model={userSelected}
-              onSelect={::this.onSelectUser}
-              component={UserSelection}
-            />
-            {this.renderTweetFooter()}
+      <div className='composeTweetContent'>
+        <div className='container'>
+          {this.renderCloseIcon()}
+          <div className='row'>
+            <div className='col-xs-8 col-xs-offset-2'>
+              <TypeAhead
+                onChange={::this.onChangeTweet}
+                list={possibleUsers}
+                value={tweet}
+                model={userSelected}
+                onSelect={::this.onSelectUser}
+                component={UserSelection}
+              />
+              {this.renderTweetFooter()}
+            </div>
           </div>
         </div>
       </div>

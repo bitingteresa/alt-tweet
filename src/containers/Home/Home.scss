@@ -1,0 +1,15 @@
+@import '../../styles/index';
+
+.homeContent {
+  background: $sky;
+  background: -webkit-radial-gradient(circle, $lemon, $sky);
+  background: -o-radial-gradient(circle, $lemon, $sky);
+  background: -moz-radial-gradient(circle, $lemon, $sky);
+  background: radial-gradient(circle, $lemon, $sky);
+  height: 100vh;
+
+  .container {
+    padding: 1.5rem 0rem;
+    color: white;
+  }
+}
