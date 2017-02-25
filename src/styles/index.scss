@@ -16,7 +16,6 @@ body {
 }
 
 i {
-
   &:hover {
     cursor: pointer;
     -webkit-transform: rotate(360deg);
@@ -30,7 +29,7 @@ i {
 
 .form-control {
   font-size: 24px;
-  height: 48px;
+  height: 150px !important;
   border-radius: 0;
   box-shadow: none;
   border: 3px solid $algae;
