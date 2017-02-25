@@ -19,6 +19,8 @@ class ComposeTweet extends Component {
   }
 
   onChangeTweet (e) {
+    const { clearPossibleUsers } = this.props.actions;
+    const { regExMatches } = this.state;
     const { value } = e.target;
     const newCount = 140 - value.length;
 
@@ -26,7 +28,12 @@ class ComposeTweet extends Component {
       tweet: value,
       charCount: newCount
     });
+
     this.checkTweet(value);
+
+    if (value === '' || !regExMatches.length) {
+      clearPossibleUsers();
+    }
   }
 
   onSelectUser (user) {
@@ -51,6 +58,8 @@ class ComposeTweet extends Component {
     if (users && users.length === 1) {
       this.setState({ regExMatches: users });
       fetchPossibleUsers(users[0]);
+    } else {
+      this.setState({ regExMatches: [] });
     }
   }
 
