@@ -18,6 +18,14 @@ class ComposeTweet extends Component {
     hashHistory.push('/');
   }
 
+  onPostTweet () {
+    const { postTweet } = this.props.actions;
+    const { tweet } = this.state;
+
+    postTweet(tweet);
+    this.onLeave();
+  }
+
   onChangeTweet (e) {
     const { clearPossibleUsers } = this.props.actions;
     const { regExMatches } = this.state;
@@ -69,7 +77,12 @@ class ComposeTweet extends Component {
     return (
       <div className='pull-right tweetFooter'>
         <p>{charCount}</p>
-        <button className='btn btn-primary'>Tweet</button>
+        <button
+          className='btn btn-primary'
+          onClick={::this.onPostTweet}
+        >
+          Tweet
+        </button>
       </div>
     );
   }
@@ -128,7 +141,8 @@ const mapDispatchToProps = dispatch => ({
   actions: {
     ...bindActionCreators({
       fetchPossibleUsers: TwitterServices.fetchPossibleUsers,
-      clearPossibleUsers: TwitterServices.clearPossibleUsers
+      clearPossibleUsers: TwitterServices.clearPossibleUsers,
+      postTweet: TwitterServices.postTweet
     }, dispatch)
   }
 });

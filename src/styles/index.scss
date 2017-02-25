@@ -47,7 +47,7 @@ i {
   background-color: transparent;
   border-color: $sky;
   color: $sky;
-  &:hover {
+  &:hover, &:active {
     background-color: $sky;
     border-color: $sky;
   }

@@ -2,7 +2,9 @@ import * as C from '../constants';
 
 const initialState = {
   isFetching: false,
-  possibleUsers: []
+  isPosting: false,
+  possibleUsers: [],
+  tweets: []
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +24,17 @@ export default (state = initialState, action) => {
       return newState;
     case C.CLEAR_USERS:
       newState.possibleUsers = [];
+      return newState;
+    case C.POST_TWEET_REQUEST:
+      newState.isPosting = true;
+      return newState;
+    case C.POST_TWEET_SUCCESS:
+      newState.isPosting = false;
+      newState.tweets = [...newState.tweets, action.payload];
+      return newState;
+    case C.POST_TWEET_ERROR:
+      newState.isPosting = false;
+      newState.error = action.error;
       return newState;
     default:
       return newState;

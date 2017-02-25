@@ -38,24 +38,36 @@ class Home extends Component {
     );
   }
 
-  renderTweets () {
+  renderEmptyState () {
     return (
-      <Tweets tweets={[]} />
+      <div>
+        {this.renderPigeon()}
+        <h1>
+          Keeps tiny hands busy <br />
+          without any harm.
+        </h1>
+      </div>
+    );
+  }
+
+  renderTweets () {
+    const { tweets } = this.props;
+
+    return (
+      <Tweets tweets={tweets} />
     );
   }
 
   render () {
+    const { tweets } = this.props;
+
     return (
       <div className='homeContent'>
         <div className='container'>
           {this.renderHeader()}
           <div className='row'>
             <div className='col-xs-8 col-xs-offset-2'>
-              {this.renderPigeon()}
-              <h1>
-                Keeps tiny hands busy <br />
-                without any harm.
-              </h1>
+              {tweets.length ? this.renderTweets() : this.renderEmptyState()}
             </div>
           </div>
         </div>
@@ -68,7 +80,7 @@ const mapStateToProps = (state, ownProps) => {
   const newState = {
     tweets: state.twitter.tweets
   };
-  
+
   return newState;
 };
 

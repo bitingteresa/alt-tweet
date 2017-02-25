@@ -25,3 +25,24 @@ export function clearPossibleUsers () {
     dispatch(Twitter.clearUsers());
   };
 }
+
+export function postTweet (tweet) {
+  return (dispatch) => {
+    dispatch(Twitter.postTweet());
+    return fetch('Fake posting tweet')
+      .then(
+        (resp) => {
+          const newTweet = {};
+
+          newTweet.text = tweet;
+          newTweet.date = new Date();
+          dispatch(Twitter.postTweetSuccess(newTweet));
+        }
+      )
+      .catch(
+        (resp) => {
+          dispatch(Twitter.postTweetError(resp.data));
+        }
+      );
+  };
+}
