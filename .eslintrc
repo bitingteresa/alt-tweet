@@ -33,6 +33,7 @@ rules:
   no-prototype-builtins: [1]
   no-restricted-syntax: [0]
   arrow-parens: [1]
+  class-methods-use-this: [0]
 
   react/jsx-no-bind: 0
   react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]

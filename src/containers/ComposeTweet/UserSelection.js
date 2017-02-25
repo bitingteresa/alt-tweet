@@ -11,7 +11,7 @@ export default class UserSelection extends Component {
 
     if (user) {
       return (
-        <p className='okay'>
+        <p className='singleUserSelection'>
           <img src={user.profile_image_url} alt={user.name} />
           <strong>
             @{user.screen_name}

@@ -10,14 +10,7 @@ const componentRoutes = {
   indexRoute: { component: Home },
   childRoutes: [
     {
-      path: 'tweets',
-      getComponent(location, cb) {
-        System.import(Home)
-          .then(module => cb(null, module.default));
-      }
-    },
-    {
-      path: 'tweets/create',
+      path: 'tweet',
       getComponent(location, cb) {
         System.import('./containers/ComposeTweet')
           .then(module => cb(null, module.default));

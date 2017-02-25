@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import TypeaheadItem from './TypeaheadItem';
+import './Typeahead.scss';
 
 export default class TypeAhead extends Component {
   static propTypes = {
@@ -35,14 +36,14 @@ export default class TypeAhead extends Component {
     const enter = e.keyCode === 13;
 
     if (showingList && downArrow) {
-      console.log('down');
+      e.preventDefault();
       this.setState({
         number: number + 1
       });
     }
 
     if (showingList && upArrow) {
-      console.log('up');
+      e.preventDefault();
       this.setState({
         number: number - 1
       });
@@ -50,6 +51,7 @@ export default class TypeAhead extends Component {
 
 
     if (showingList && enter) {
+      e.preventDefault();
       this.onSelect(list[number]);
       this.setState({ number: -1 });
     }
@@ -71,18 +73,19 @@ export default class TypeAhead extends Component {
       );
     });
 
-    return (<div>{items}</div>);
+    return (<div className='selectionList'>{items}</div>);
   }
 
   renderInput () {
     const { value } = this.props;
 
     return (
-      <input
+      <textarea
         className='form-control'
         onChange={::this.onChange}
         value={value}
         onKeyDown={::this.onKeyDown}
+        placeholder='Whatup doe?'
       />
     );
   }

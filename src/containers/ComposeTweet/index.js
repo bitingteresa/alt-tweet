@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { hashHistory } from 'react-router';
 import TypeAhead from '../../components/Typeahead';
 import UserSelection from './UserSelection';
 import * as TwitterServices from '../../services/twitter';
@@ -12,6 +13,10 @@ class ComposeTweet extends Component {
     regExMatches: [],
     usersSelected: {}
   };
+
+  onLeave () {
+    hashHistory.push('/');
+  }
 
   onChangeTweet (e) {
     const { value } = e.target;
@@ -53,9 +58,24 @@ class ComposeTweet extends Component {
     const { charCount } = this.state;
 
     return (
-      <div>
+      <div className='pull-right tweetFooter'>
         <p>{charCount}</p>
         <button className='btn btn-primary'>Tweet</button>
+      </div>
+    );
+  }
+
+  renderCloseIcon () {
+    return (
+      <div className='row closeIconWrapper'>
+        <div className='col-xs-12'>
+          <i
+            className='material-icons'
+            onClick={::this.onLeave}
+          >
+            close
+          </i>
+        </div>
       </div>
     );
   }
@@ -65,16 +85,21 @@ class ComposeTweet extends Component {
     const { userSelected, tweet } = this.state;
 
     return (
-      <div>
-        <TypeAhead
-          onChange={::this.onChangeTweet}
-          list={possibleUsers}
-          value={tweet}
-          model={userSelected}
-          onSelect={::this.onSelectUser}
-          component={UserSelection}
-        />
-        {this.renderTweetFooter()}
+      <div className='content'>
+        {this.renderCloseIcon()}
+        <div className='row'>
+          <div className='col-xs-8 col-xs-offset-2'>
+            <TypeAhead
+              onChange={::this.onChangeTweet}
+              list={possibleUsers}
+              value={tweet}
+              model={userSelected}
+              onSelect={::this.onSelectUser}
+              component={UserSelection}
+            />
+            {this.renderTweetFooter()}
+          </div>
+        </div>
       </div>
     );
   }
@@ -85,7 +110,6 @@ const mapStateToProps = (state, ownProps) => {
     possibleUsers: state.twitter.possibleUsers
   };
 
-  console.log('map state to p', newState);
   return newState;
 };
 

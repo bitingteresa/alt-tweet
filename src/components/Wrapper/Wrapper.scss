@@ -1,15 +1,12 @@
 @import '../../styles/index';
 
 .container {
-  background: $sky;
-  background: -webkit-radial-gradient(circle, $lemon, $sky);
-  background: -o-radial-gradient(circle, $lemon, $sky);
-  background: -moz-radial-gradient(circle, $lemon, $sky);
-  background: radial-gradient(circle, $lemon, $sky);
-  height: 100vh;
-  width: 100%;
-}
-
-.content {
-  margin: 5rem 5rem 0;
+  // background: $sky;
+  // background: -webkit-radial-gradient(circle, $lemon, $sky);
+  // background: -o-radial-gradient(circle, $lemon, $sky);
+  // background: -moz-radial-gradient(circle, $lemon, $sky);
+  // background: radial-gradient(circle, $lemon, $sky);
+  // height: 100vh;
+  // width: 100%;
+  padding: 1.5rem 0rem;
 }

@@ -4,9 +4,7 @@ import './Wrapper.scss';
 const Wrapper = ({ children }) => {
   return (
     <div className='container'>
-      <div className='content'>
-        {children}
-      </div>
+      {children}
     </div>
   );
 };
