@@ -50,8 +50,8 @@ export default class TypeAhead extends Component {
 
 
     if (showingList && enter) {
-      console.log('presee')
-      this.hideList()
+      this.onSelect(list[number]);
+      this.setState({ number: -1 });
     }
   }
 
@@ -60,7 +60,6 @@ export default class TypeAhead extends Component {
   }
 
   renderList (list) {
-    const { show } = this.state;
     const items = list.map((item, idx) => {
       return (
         <TypeaheadItem

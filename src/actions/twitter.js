@@ -19,3 +19,9 @@ export function fetchUsersError (response) {
     error: response
   };
 }
+
+export function clearUsers () {
+  return {
+    type: C.CLEAR_USERS
+  };
+}

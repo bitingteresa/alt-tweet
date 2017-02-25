@@ -42,7 +42,8 @@ class ComposeTweet extends Component {
     const regex = /\B@\w{2,}/gi;
     const users = tweet.match(regex);
 
-    if (users) {
+    // TODO: need to figure out multiples
+    if (users && users.length === 1) {
       this.setState({ regExMatches: users });
       fetchPossibleUsers(users[0]);
     }
@@ -84,6 +85,7 @@ const mapStateToProps = (state, ownProps) => {
     possibleUsers: state.twitter.possibleUsers
   };
 
+  console.log('map state to p', newState);
   return newState;
 };
 

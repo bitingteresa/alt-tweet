@@ -20,6 +20,9 @@ export default (state = initialState, action) => {
       newState.isFetching = false;
       newState.error = action.error;
       return newState;
+    case C.CLEAR_USERS:
+      newState.possibleUsers = [];
+      return newState;
     default:
       return newState;
   }

@@ -8,14 +8,20 @@ export function fetchPossibleUsers(searchTerm) {
     dispatch(Twitter.fetchUsers());
     axios.get(url)
       .then(
-        resp => {
+        (resp) => {
           dispatch(Twitter.fetchUsersSuccess(resp.data.users));
         }
       )
       .catch(
-        resp => {
+        (resp) => {
           dispatch(Twitter.fetchUsersError(resp.data));
         }
       );
+  };
+}
+
+export function clearPossibleUsers () {
+  return (dispatch) => {
+    dispatch(Twitter.clearUsers());
   };
 }
