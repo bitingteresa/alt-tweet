@@ -19,7 +19,7 @@ const componentRoutes = {
     {
       path: '*',
       getComponent(location, cb) {
-        System.import('./containers/ComposeTweet')
+        System.import('./components/NoMatch')
           .then(module => cb(null, module.default));
       }
     }
