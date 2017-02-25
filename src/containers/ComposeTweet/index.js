@@ -11,7 +11,8 @@ class ComposeTweet extends Component {
     charCount: 140,
     tweet: '',
     regExMatches: [],
-    usersSelected: {}
+    usersSelected: {},
+    showError: false
   };
 
   onLeave () {
@@ -22,13 +23,17 @@ class ComposeTweet extends Component {
     const { postTweet } = this.props.actions;
     const { tweet } = this.state;
 
-    postTweet(tweet);
-    this.onLeave();
+    if (tweet.length <= 140) {
+      postTweet(tweet);
+      this.onLeave();
+    } else {
+      this.setState({ showError: true });
+    }
   }
 
   onChangeTweet (e) {
     const { clearPossibleUsers } = this.props.actions;
-    const { regExMatches } = this.state;
+    const { regExMatches, showError } = this.state;
     const { value } = e.target;
     const newCount = 140 - value.length;
 
@@ -41,6 +46,10 @@ class ComposeTweet extends Component {
 
     if (value === '' || !regExMatches.length) {
       clearPossibleUsers();
+    }
+
+    if (showError && value.length <= 140) {
+      this.setState({ showError: false });
     }
   }
 
@@ -72,10 +81,12 @@ class ComposeTweet extends Component {
   }
 
   renderTweetFooter () {
-    const { charCount } = this.state;
+    const { charCount, showError } = this.state;
+    const errorMessage = (<p className='err'>Too many characters!</p>);
 
     return (
       <div className='pull-right tweetFooter'>
+        {showError ? errorMessage : ''}
         <p>{charCount}</p>
         <button
           className='btn btn-primary'

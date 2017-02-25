@@ -16,5 +16,6 @@ Start at the home page, which doubles as the list for fake tweets, and click on 
 
 ### Future Improvements
 * Refactor how multiple twitter users search is done.
+* Debounce service call
 * Clean up arrow key usage so focus won't be an issue.
 * Use React-Router 4
