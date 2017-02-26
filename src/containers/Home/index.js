@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { hashHistory } from 'react-router';
 import Tweets from '../../components/Tweets';
 import Pigeon from '../../assets/Pigeon.png';
@@ -84,10 +83,4 @@ const mapStateToProps = (state, ownProps) => {
   return newState;
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: {
-    ...bindActionCreators({}, dispatch)
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, {})(Home);

@@ -18,5 +18,6 @@ Start at the home page, which doubles as the list for fake tweets, and click on 
 * Refactor how multiple twitter users search is done.
 * Debounce service call.
 * Clean up arrow key usage so focus won't be an issue.
-* Pull in momentJS for date formatting.
+* Pull in momentJS for date formatting to be displayed on tweets.
 * Use React-Router 4 for animated transitions.
+* General refactor into smaller components and containers
