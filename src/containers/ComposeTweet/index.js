@@ -56,8 +56,12 @@ class ComposeTweet extends Component {
   onSelectUser (user) {
     const { clearPossibleUsers } = this.props.actions;
     const { usersSelected, tweet, regExMatches } = this.state;
+    const newTweet = tweet.replace(
+      regExMatches[regExMatches.length - 1], `@${user.screen_name}`
+    );
     const newUsersSelected = { ...usersSelected };
-    const newTweet = tweet.replace(regExMatches[0], `@${user.screen_name}`);
+
+    newUsersSelected[user.screen_name] = true;
 
     this.setState({
       usersSelected: newUsersSelected,
@@ -68,13 +72,18 @@ class ComposeTweet extends Component {
 
   checkTweet (tweet) {
     const { fetchPossibleUsers } = this.props.actions;
+    const { usersSelected } = this.state;
     const regex = /\B@\w{2,}/gi;
     const users = tweet.match(regex);
 
-    // TODO: need to figure out multiples
-    if (users && users.length === 1) {
+    if (users && users.length) {
+      const lastUser = users[users.length - 1].slice(1);
+
       this.setState({ regExMatches: users });
-      fetchPossibleUsers(users[0]);
+
+      if (!usersSelected[lastUser]) {
+        fetchPossibleUsers(lastUser);
+      }
     } else {
       this.setState({ regExMatches: [] });
     }
